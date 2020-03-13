@@ -24,25 +24,25 @@
       "type": "simulation",
       "cfg": {
         "simulation": {
-          "maxJobDurationInSeconds": 300,
+          "maxJobDurationInSeconds": 7200,
           "failureBehavior": "Continue",
-          "iamRole": "[YOUR IAM ROLE]"
-          "outputLocation": "burnsca-training",
+          "iamRole": "arn:aws:iam::942158337222:role/service-role/AWSDeepRacerServiceRole",
+          "outputLocation": "slalom-rover-training",
           "tags": {}
         },
         "simulationApp": {
           "name": "training-grounds-no-rl",
           "sourceBundleFile": "/simulation_ws/bundle/output.tar",
           "architecture": "X86_64",
-          "s3Bucket": "[YOUR_S3_BUCKET",
+          "s3Bucket": "slalom-rover-training",
           "launchConfig": {
             "packageName": "training_grounds",
             "launchFile": "training_env_only.launch",
             "environmentVariables": {
               "MARKOV_PRESET_FILE": "training_grounds.py",
-              "ROS_AWS_REGION": "[YOUR_AWS_REGION]",
-              "MODEL_S3_BUCKET": "[YOUR_S3_BUCKET]",
-              "MODEL_S3_PREFIX": "[YOUR_S3_BUCKET_SUBDIR]"
+              "ROS_AWS_REGION": "us-east-1",
+              "MODEL_S3_BUCKET": "slalom-rover-training",
+              "MODEL_S3_PREFIX": "training-grounds-001"
             }
           },
           "simulationSoftwareSuite": {
@@ -66,25 +66,25 @@
       "type": "simulation",
       "cfg": {
         "simulation": {
-          "maxJobDurationInSeconds": 86400,
+          "maxJobDurationInSeconds": 1200,
           "failureBehavior": "Continue",
-          "iamRole": "[YOUR_IAM_ROLE]",
-          "outputLocation": "[YOUR_OUTPUT_S3_BUCKET]",
+          "iamRole": "arn:aws:iam::942158337222:role/service-role/AWSDeepRacerServiceRole",
+          "outputLocation": "slalom-rover-mars",
           "tags": {}
         },
         "simulationApp": {
           "name": "mars-env-no-rl",
           "sourceBundleFile": "/simulation_ws/bundle/output.tar",
           "architecture": "X86_64",
-          "s3Bucket": "burnsca-mars",
+          "s3Bucket": "slalom-rover-mars",
           "launchConfig": {
             "packageName": "mars",
             "launchFile": "mars_env_only.launch",
             "environmentVariables": {
               "MARKOV_PRESET_FILE": "mars_presets.py",
-              "ROS_AWS_REGION": "[YOUR_AWS_REGION]",
-              "MODEL_S3_BUCKET": "[YOUR_S3_BUCKET]",
-              "MODEL_S3_PREFIX": "[YOUR_S3_BUCKET_SUBDIR]"
+              "ROS_AWS_REGION": "us-east-1",
+              "MODEL_S3_BUCKET": "slalom-rover-mars",
+              "MODEL_S3_PREFIX": "mars-env-test-001"
             }
           },
           "simulationSoftwareSuite": {
@@ -108,17 +108,17 @@
       "type": "simulation",
       "cfg": {
         "simulation": {
-          "maxJobDurationInSeconds": 86400,
+          "maxJobDurationInSeconds": 1200,
           "failureBehavior": "Continue",
-          "iamRole": "[YOUR_IAM_ROLE]",
-          "outputLocation": "[YOUR_S3_BUCKET]",
+          "iamRole": "arn:aws:iam::942158337222:role/service-role/AWSDeepRacerServiceRole",
+          "outputLocation": "slalom-rover-training-output",
           "vpcConfig": {
             "subnets": [
-              "[YOUR_SUBNET_A]",
-              "[YOUR_SUBNET_B]"
+              "subnet-0ed7f2d35c78d15e8",
+              "subnet-0b3272239175fca8d"
             ],
             "securityGroups": [
-              "[YOUR_SECURITY_GROUP]"
+              "sg-03fe809703f7d312a"
             ],
             "assignPublicIp": true
           },
@@ -128,15 +128,15 @@
           "name": "training-grounds-with-rl",
           "sourceBundleFile": "/simulation_ws/bundle/output.tar",
           "architecture": "X86_64",
-          "s3Bucket": "burnsca-training",
+          "s3Bucket": "slalom-rover-training",
           "launchConfig": {
             "packageName": "training_grounds",
             "launchFile": "training_full_sim.launch",
             "environmentVariables": {
               "MARKOV_PRESET_FILE": "training_grounds.py",
-              "MODEL_S3_BUCKET": "[YOUR_S3_BUCKET]",
-              "MODEL_S3_PREFIX": "[YOUR_S3_BUCKET_SUBDIR]",
-              "ROS_AWS_REGION": "[YOUR_AWS_REGION]"
+              "MODEL_S3_BUCKET": "slalom-rover-training",
+              "MODEL_S3_PREFIX": "001-training-grounds-with-rl",
+              "ROS_AWS_REGION": "us-east-1"
             }
           },
           "simulationSoftwareSuite": {
@@ -160,17 +160,17 @@
       "type": "simulation",
       "cfg": {
         "simulation": {
-          "maxJobDurationInSeconds": 86400,
+          "maxJobDurationInSeconds": 1200,
           "failureBehavior": "Continue",
-          "iamRole": "[YOUR_IAM_ROLE]",
-          "outputLocation": "burnsca-mars",
+          "iamRole": "arn:aws:iam::942158337222:role/service-role/AWSDeepRacerServiceRole",
+          "outputLocation": "slalom-rover-mars",
           "vpcConfig": {
             "subnets": [
-              "[YOUR_SUBNET_A]",
-              "[YOUR_SUBNET_B]"
+              "subnet-0ed7f2d35c78d15e8",
+              "subnet-0b3272239175fca8d"
             ],
             "securityGroups": [
-              "[YOUR_SECURITY_GROUP]"
+              "sg-03fe809703f7d312a"
             ],
             "assignPublicIp": true
           },
@@ -180,15 +180,15 @@
           "name": "mars_env-with-rl",
           "sourceBundleFile": "/simulation_ws/bundle/output.tar",
           "architecture": "X86_64",
-          "s3Bucket": "burnsca-mars",
+          "s3Bucket": "slalom-rover-mars",
           "launchConfig": {
             "packageName": "mars",
             "launchFile": "mars_full_sim.launch",
             "environmentVariables": {
               "MARKOV_PRESET_FILE": "mars_presets.py",
-              "MODEL_S3_BUCKET": "[YOUR_S3_BUCKET]",
-              "MODEL_S3_PREFIX": "[YOUR_S3_BUCKET_SUBDIR]",
-              "ROS_AWS_REGION": "[YOUR_AWS_REGION]"
+              "MODEL_S3_BUCKET": "slalom-rover-mars",
+              "MODEL_S3_PREFIX": "001-mars-with-rl",
+              "ROS_AWS_REGION": "us-east-1"
             }
           },
           "simulationSoftwareSuite": {
@@ -212,17 +212,17 @@
       "type": "simulation",
       "cfg": {
         "simulation": {
-          "maxJobDurationInSeconds": 1800,
+          "maxJobDurationInSeconds": 1200,
           "failureBehavior": "Continue",
-          "iamRole": "[YOUR_IAM_ROLE]",
-          "outputLocation": "burnsca-training-output",
+          "iamRole": "arn:aws:iam::942158337222:role/service-role/AWSDeepRacerServiceRole",
+          "outputLocation": "slalom-rover-training-output",
           "vpcConfig": {
             "subnets": [
-              "[YOUR_SUBNET_A]",
-              "[YOUR_SUBNET_B]"
+              "subnet-0ed7f2d35c78d15e8",
+              "subnet-0b3272239175fca8d"
             ],
             "securityGroups": [
-              "[YOUR_SECURITY_GROUP]"
+              "sg-03fe809703f7d312a"
             ],
             "assignPublicIp": true
           },
@@ -232,15 +232,15 @@
           "name": "training-evaluation-sim",
           "sourceBundleFile": "/simulation_ws/bundle/output.tar",
           "architecture": "X86_64",
-          "s3Bucket": "[YOUR_S3_BUCKET]",
+          "s3Bucket": "slalom-rover-training",
           "launchConfig": {
             "packageName": "training_grounds",
             "launchFile": "eval.launch",
             "environmentVariables": {
               "MARKOV_PRESET_FILE": "rover_evaluation.py",
-              "MODEL_S3_BUCKET": "[YOUR_S3_BUCKET]",
-              "MODEL_S3_PREFIX": "[YOUR_S3_BUCKET_SUBDIR]",
-              "ROS_AWS_REGION": "[YOUR_AWS_REGION]"
+              "MODEL_S3_BUCKET": "slalom-rover-training",
+              "MODEL_S3_PREFIX": "001-training-grounds-eval",
+              "ROS_AWS_REGION": "us-east-1"
             }
           },
           "simulationSoftwareSuite": {

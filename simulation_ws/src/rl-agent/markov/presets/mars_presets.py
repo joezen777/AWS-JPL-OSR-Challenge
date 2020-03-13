@@ -17,8 +17,8 @@ from markov import environments
 ####################
 schedule_params = ScheduleParameters()
 schedule_params.improve_steps = TrainingSteps(100000)       #Changing to 100K
-schedule_params.steps_between_evaluation_periods = EnvironmentEpisodes(40)
-schedule_params.evaluation_steps = EnvironmentEpisodes(5)
+schedule_params.steps_between_evaluation_periods = EnvironmentEpisodes(20)
+schedule_params.evaluation_steps = EnvironmentEpisodes(3)
 schedule_params.heatup_steps = EnvironmentSteps(0)
 
 #########
@@ -26,7 +26,7 @@ schedule_params.heatup_steps = EnvironmentSteps(0)
 #########
 agent_params = ClippedPPOAgentParameters()
 
-agent_params.network_wrappers['main'].learning_rate = 0.0003
+agent_params.network_wrappers['main'].learning_rate = 0.0002
 agent_params.network_wrappers['main'].input_embedders_parameters['observation'].activation_function = 'relu'
 agent_params.network_wrappers['main'].middleware_parameters.activation_function = 'relu'
 agent_params.network_wrappers['main'].batch_size = 64
@@ -67,7 +67,7 @@ vis_params.tensorboard = True
 preset_validation_params = PresetValidationParameters()
 preset_validation_params.test = True
 preset_validation_params.min_reward_threshold = 2000
-preset_validation_params.max_episodes_to_achieve_reward = 1000
+preset_validation_params.max_episodes_to_achieve_reward = 2000
 
 
 
